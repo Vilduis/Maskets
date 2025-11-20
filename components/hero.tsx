@@ -39,7 +39,7 @@ const Hero = () => {
               size="lg"
               className="text-sm sm:text-base w-full sm:w-auto"
             >
-              <Link href="/contact">Comienza con Maskets</Link>
+              <Link href="/contact">Comienza ahora</Link>
             </Button>
             <Button
               asChild
@@ -49,10 +49,10 @@ const Hero = () => {
             >
               <Link
                 href="/projects"
-                className="flex items-center justify-center gap-2"
+                className="flex items-center border border-primary/20 px-4 py-2 justify-center gap-2"
               >
                 <ArrowRight className="size-4 sm:size-5" />
-                Explorar nuestro trabajo
+                Ver proyectos
               </Link>
             </Button>
           </div>

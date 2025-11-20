@@ -1,33 +1,11 @@
-import {
-  FacebookIcon,
-  InstagramIcon,
-  YoutubeIcon,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
-
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import Logo from "@/components/logo";
+import { footerLinks, socialLinks } from "@/constants/footer";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const footerLinks = {
-    empresa: [
-      { label: "Nosotros", href: "/us" },
-      { label: "Servicios", href: "/services" },
-      { label: "Proyectos", href: "/projects" },
-      { label: "Contacto", href: "/contact" },
-    ],
-  };
-
-  const socialLinks = [
-    { icon: FacebookIcon, href: "#", label: "Facebook" },
-    { icon: InstagramIcon, href: "#", label: "Instagram" },
-    { icon: YoutubeIcon, href: "#", label: "Youtube" },
-  ];
 
   return (
     <footer className="relative bg-muted/30 border-t border-border">
@@ -36,7 +14,7 @@ const Footer = () => {
 
       <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 md:py-16 lg:px-8 lg:py-20">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 md:gap-8 lg:grid-cols-3 lg:gap-8 xl:gap-12">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 md:gap-8 lg:grid-cols-4 lg:gap-6 xl:gap-8">
           {/* Brand Column */}
           <div className="space-y-4 sm:space-y-5">
             <Logo size="lg" showText={true} />
@@ -72,7 +50,25 @@ const Footer = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm sm:text-base text-muted-foreground transition-colors hover:text-primary hover:translate-x-1 inline-block w-fit active:text-primary"
+                  className="text-sm sm:text-base text-muted-foreground transition-colors hover:text-primary inline-block w-fit active:text-primary"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Servicios Links */}
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-sm sm:text-base font-semibold text-foreground">
+              Servicios
+            </h3>
+            <nav className="flex flex-col space-y-2.5 sm:space-y-3">
+              {footerLinks.servicios.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm sm:text-base text-muted-foreground transition-colors hover:text-primary inline-block w-fit active:text-primary"
                 >
                   {link.label}
                 </Link>
@@ -115,8 +111,8 @@ const Footer = () => {
 
       {/* Copyright Section */}
       <div className="relative mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-6 md:py-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center sm:text-left leading-relaxed">
+        <div className="flex items-center justify-center">
+          <p className="text-xs sm:text-sm md:text-base text-muted-foreground text-center leading-relaxed">
             {`© ${currentYear} `}
             <Link
               href="/"
@@ -125,9 +121,6 @@ const Footer = () => {
               Maskets
             </Link>
             . Todos los derechos reservados.
-          </p>
-          <p className="text-xs sm:text-sm text-muted-foreground text-center sm:text-right whitespace-nowrap">
-            Diseñando el mañana, hoy.
           </p>
         </div>
       </div>

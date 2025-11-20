@@ -6,31 +6,32 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Send, Clock, MessageSquare } from "lucide-react";
-import { useState } from "react";
+import { useForm } from "@/hooks/use-form";
+
+interface ContactFormData extends Record<string, string> {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+const initialFormData: ContactFormData = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const { formData, handleChange, reset } =
+    useForm<ContactFormData>(initialFormData);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Aquí puedes agregar la lógica para enviar el formulario
     console.log("Form submitted:", formData);
     // Reset form
-    setFormData({ name: "", email: "", phone: "", message: "" });
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    reset();
   };
 
   const contactInfo = [
